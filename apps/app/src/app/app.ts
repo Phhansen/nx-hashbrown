@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { Component, inject } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { Suggestions } from './suggestions/suggestions';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [Suggestions],
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  template: ` <app-suggestions></app-suggestions> `,
 })
 export class App {
-  protected title = 'app';
+  readonly iconRegistry = inject(MatIconRegistry);
+
+  constructor() {
+    this.iconRegistry.setDefaultFontSetClass('material-symbols-outlined');
+  }
 }
